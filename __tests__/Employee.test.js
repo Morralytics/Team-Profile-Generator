@@ -10,5 +10,13 @@ describe('Employee', () => {
             expect(employee.id).toEqual(12);
             expect(employee.email).toEqual('Josh@email.com');
         })
+
+        it('Should throw an error if provided no arguemnts', () => {
+            // We wrap the initilization in a callback function so jest will
+            const employee = () => new Employee();
+
+            //Verifies that an error was thrown in the callback function
+            expect(employee).toThrow();
+        })
     })
 })
