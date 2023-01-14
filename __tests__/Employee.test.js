@@ -26,7 +26,7 @@ describe('Employee', () => {
             const err = new Error("Parameter 'name' expected to be a non-empty string.");
 
             // Verifies that it is receiving the same error
-            expect(employee).toThrow(err);
+            expect(employee).toThrowError(err);
         });
 
         it("Should throw an error if 'id' is not provided", () => {
@@ -36,7 +36,7 @@ describe('Employee', () => {
             const err = new Error("Paramter 'id' expected to be a non-negative number.");
 
             // Verifies that it is receiving the same error
-            expect(employee).toThrow(err);
+            expect(employee).toThrowError(err);
         });
 
         it("Should throw an error if 'email' is not provided", () => {
@@ -46,7 +46,17 @@ describe('Employee', () => {
             const err = new Error("Parameter 'email' expected to be a non-empty string.");
 
             // Verifies that it is receiving the same error
-            expect(employee).toThrow(err);
+            expect(employee).toThrowError(err);
         });
+
+        it("Should throw an error if 'name' is not a string", () => {
+            // Initilizies a new employee without an email string
+            const employee = () => new Employee(23, 23, '@sample.com');
+            // Stores the error to compare
+            const err = new Error("Parameter 'name' expected to be a non-empty string.")
+
+            // Verifies that it is receiving the same error
+            expect(employee).toThrowError(err);
+        })
     });
 });
