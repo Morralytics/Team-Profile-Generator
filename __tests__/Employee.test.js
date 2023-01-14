@@ -37,6 +37,16 @@ describe('Employee', () => {
 
             // Verifies that it is receiving the same error
             expect(employee).toThrow(err);
-        })
-    })
-})
+        });
+
+        it("Should throw an error if 'email' is not provided", () => {
+            // Initilizies a new employee without an email
+            const employee = () => new Employee('Josh', 23); 
+            // Stores the error to compare
+            const err = new Error("Parameter 'email' expected to be a non-empty string.");
+
+            // Verifies that it is receiving the same error
+            expect(employee).toThrow(err);
+        });
+    });
+});
