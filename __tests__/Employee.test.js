@@ -31,7 +31,7 @@ describe('Employee', () => {
 
         it("Should throw an error if 'id' is not provided", () => {
             // Initilizies a new employee without an id
-            const employee = () => new Employee('Josh', '@sample.com'); 
+            const employee = () => new Employee('Josh', '@sample.com');
             // Stores the error to compare
             const err = new Error("Paramter 'id' expected to be a non-negative number.");
 
@@ -41,7 +41,7 @@ describe('Employee', () => {
 
         it("Should throw an error if 'email' is not provided", () => {
             // Initilizies a new employee without an email
-            const employee = () => new Employee('Josh', 23); 
+            const employee = () => new Employee('Josh', 23);
             // Stores the error to compare
             const err = new Error("Parameter 'email' expected to be a non-empty string.");
 
@@ -57,6 +57,16 @@ describe('Employee', () => {
 
             // Verifies that it is receiving the same error
             expect(employee).toThrowError(err);
-        })
+        });
+
+        it("Should throw an error if 'number' is not a number", () => {
+            // Initilizies a new employee without a number id
+            const employee = () => new Employee('Josh', '23', '@sample.com');
+            // Stores the error to compare
+            const err = new Error("Paramter 'id' expected to be a non-negative number.");
+
+            // Verifies that it is receiving the same error
+            expect(employee).toThrowError(err);
+        });
     });
 });
