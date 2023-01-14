@@ -9,7 +9,7 @@ describe('Employee', () => {
             expect(employee.name).toEqual('Josh');
             expect(employee.id).toEqual(12);
             expect(employee.email).toEqual('Josh@email.com');
-        })
+        });
 
         it('Should throw an error if provided no arguemnts', () => {
             // We wrap the initilization in a callback function so jest will
@@ -17,6 +17,16 @@ describe('Employee', () => {
 
             //Verifies that an error was thrown in the callback function
             expect(employee).toThrow();
+        });
+
+        it("Should throw an error if 'name' is not provided", () => {
+            // Initilizies a new employee without a name
+            const employee = () => new Employee(23, '@sample.com');
+            // Stores the error to compare
+            const err = new Error("Parameter 'name' expected to be a non-empty string.");
+
+            // Verifies that it is receiving the same error
+            expect(employee).toThrow(err);
         })
     })
 })
