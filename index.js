@@ -116,7 +116,7 @@ const questions = async () => {
             answers.name,
             parseInt(answers.id),
             answers.email,
-            managerAnswer.officeNum
+            parseInt(managerAnswer.officeNum)
         )
         finishedTeam.push(newManager);
         if (managerAnswer.nextStep === 'Add a new team member') {
@@ -134,9 +134,8 @@ const createTeam = () => {
     });
 
     let finalTeamProfileHTML = html.generateHTML(generatedTeamCards);
-    console.log(finishedTeam)
     fs.writeFile('./dist/index.html', finalTeamProfileHTML, (err) =>
-    err ? console.log('err') : console.log('success'));
+    err ? console.log('err') : console.log('Successfully added all team members!'));
 }
 
 // Runs the code base
