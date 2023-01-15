@@ -50,7 +50,24 @@ const questions = async () => {
                     engineerAnswer.git
                     )
                     console.log(newEngineer);
-                }
+        }
+        else if(answers.role === 'Intern') {
+            const internAnswer = await inquirer
+                .prompt([
+                    {
+                        type: 'input',
+                        message: 'What school have you or are currently attending?',
+                        name: 'school'
+                    }
+                ])
+                const newIntern = new Intern(
+                    answers.name,
+                    parseInt(answers.id),
+                    answers.email,
+                    internAnswer.school
+                )
+                console.log(newIntern);
+        };
 };
 
 questions();
