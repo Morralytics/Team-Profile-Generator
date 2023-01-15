@@ -13,7 +13,7 @@ const questions = async () => {
         .prompt([
             {
                 type: 'input',
-                message: 'What is your name?', 
+                message: 'What is your name?',
                 name: 'name'
             },
             {
@@ -34,57 +34,84 @@ const questions = async () => {
             }
         ])
 
-        if(answers.role === 'Engineer') {
-            const engineerAnswer = await inquirer
-                .prompt([
-                    {
-                        type: 'input',
-                        message: 'What is your GitHub profile?',
-                        name: 'git'
-                    }
-                ])
-                const newEngineer = new Engineer(
-                    answers.name,
-                    parseInt(answers.id),
-                    answers.email,
-                    engineerAnswer.git
-                    )
-                    console.log(newEngineer);
+    if (answers.role === 'Engineer') {
+        const engineerAnswer = await inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    message: 'What is your GitHub profile?',
+                    name: 'git'
+                }
+            ])
+        const newEngineer = new Engineer(
+            answers.name,
+            parseInt(answers.id),
+            answers.email,
+            engineerAnswer.git
+        )
+        if (engineerAnswer.nextStep === 'Add a new team member') {
+            questions()
+        } else {
+            //createTeam() needs to be created
+            console.log('rendered');
         }
-        else if(answers.role === 'Intern') {
-            const internAnswer = await inquirer
-                .prompt([
-                    {
-                        type: 'input',
-                        message: 'What school have you or are currently attending?',
-                        name: 'school'
-                    }
-                ])
-                const newIntern = new Intern(
-                    answers.name,
-                    parseInt(answers.id),
-                    answers.email,
-                    internAnswer.school
-                )
-                console.log(newIntern);
+        console.log(newEngineer);
+    }
+    else if (answers.role === 'Intern') {
+        const internAnswer = await inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    message: 'What school have you or are currently attending?',
+                    name: 'school'
+                },
+                {
+
+                }
+            ])
+        const newIntern = new Intern(
+            answers.name,
+            parseInt(answers.id),
+            answers.email,
+            internAnswer.school
+        )
+        if (internAnswer.nextStep === 'Add a new team member') {
+            questions()
+        } else {
+            //createTeam() needs to be created
+            console.log('rendered');
         }
-        else if(answers.role === 'Manager') {
-            const managerAnswer = await inquirer
-                .prompt([
-                    {
-                        type: 'input',
-                        message: 'What is your office number?',
-                        name: 'officeNum'
-                    }
-                ])
-                const newManager = new Manager(
-                    answers.name,
-                    parseInt(answers.id),
-                    answers.email,
-                    managerAnswer.officeNum
-                )
-                console.log(newManager);
-        };
+        console.log(newIntern);
+    }
+    else if (answers.role === 'Manager') {
+        const managerAnswer = await inquirer
+            .prompt([
+                {
+                    type: 'input',
+                    message: 'What is your office number?',
+                    name: 'officeNum'
+                },
+                {
+                    type: 'list',
+                    message: 'What would you like to do next?',
+                    name: 'nextStep',
+                    choices: ['Add a new team member', 'Create team!']
+                }
+            ])
+        const newManager = new Manager(
+            answers.name,
+            parseInt(answers.id),
+            answers.email,
+            managerAnswer.officeNum
+        )
+        if (managerAnswer.nextStep === 'Add a new team member') {
+            questions()
+        } else {
+            //createTeam() needs to be created
+            console.log('rendered');
+        }
+        console.log(newManager);
+    };
 };
 
 questions();
