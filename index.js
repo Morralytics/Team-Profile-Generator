@@ -5,8 +5,6 @@ const Engineer = require('./lib/engineer');
 const Manager = require('./lib/manager');
 const Intern = require('./lib/intern');
 
-// const newEmployee = new Employee('nick', 23, '@gmail');
-// const newEngineer = new Engineer('nick morris', 24, '@gmail', 'volexity22')
 // const newManager = new Manager('nick morris', 24, '@gmail', 'volexity22')
 // const newIntern = new Intern('nick morris', 24, '@gmail', 'volexity22')
 
@@ -35,4 +33,24 @@ const questions = async () => {
                 choices: ['Engineer', 'Intern', 'Manager']
             }
         ])
-}
+
+        if(answers.role === 'Engineer') {
+            const engineerAnswer = await inquirer
+                .prompt([
+                    {
+                        type: 'input',
+                        message: 'What is your GitHub profile?',
+                        name: 'git'
+                    }
+                ])
+                const newEngineer = new Engineer(
+                    answers.name,
+                    parseInt(answers.id),
+                    answers.email,
+                    engineerAnswer.git
+                    )
+                    console.log(newEngineer);
+                }
+};
+
+questions();
