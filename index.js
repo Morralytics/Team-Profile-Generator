@@ -10,7 +10,7 @@ const Intern = require('./lib/intern');
 // const newIntern = new Intern('nick morris', 24, '@gmail', 'volexity22')
 
 const finishedTeam = [];
-const generatedTeamCards = '';
+let generatedTeamCards = '';
 
 const questions = async () => {
     const answers = await inquirer
@@ -87,6 +87,7 @@ const questions = async () => {
             answers.email,
             internAnswer.school
         )
+        console.log(internAnswer.school);
         finishedTeam.push(newIntern);
         if (internAnswer.nextStep === 'Add a new team member') {
             questions()
@@ -119,20 +120,20 @@ const questions = async () => {
         if (managerAnswer.nextStep === 'Add a new team member') {
             questions()
         } else {
-            createTeam(answers);
+            createTeam();
         }
     };
 };
 
-const createTeam = (answers) => {
+const createTeam = () => {
     finishedTeam.forEach(member => {
-        generatedTeamCards += html.generateCard(member);
+        generatedTeamCards = generatedTeamCards + html.generateCard(member);
     });
 
-    let finalTeamProfileHTML = html.generateHTML(answers);
-
+    let finalTeamProfileHTML = html.generateHTML(generatedTeamCards);
+    console.log(finishedTeam)
     fs.writeFile('./dist/index.html', finalTeamProfileHTML, (err) =>
-    err ? console.log(err) : console.log('success'));
+    err ? console.log('err') : console.log('success'));
 }
 
 questions();

@@ -11,38 +11,39 @@ return `<!doctype html>
   </head>
   <body>
     <header>My Team</header>
-    
+    ${input}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>`
 }
 
 const generateCard = (member) => {
-  let roleQ = '';
-  let roleEmoji = '';
+  let roleQ;
 
-  if(member.role === 'Engineer') {
-    roleQ = `GitHub: <a href="https://github.com/${member.git}>${member.git}</a>`;
-    roleEmoji = '👓';
-  } else if(member.role === 'Intern') {
-    roleQ = `Education at: ${member.school}`;
-    roleEmoji = '📖';
-  } else if(member.role === 'Manager') {
-    roleQ = `Office number: ${member.officeNum}`;
-    roleEmoji = '🍵';
+  if(member.getRole() === 'Engineer') {
+    roleQ = `GitHub: <a href="https://github.com/${member.getGithub()}">${member.getGithub()}</a>`
+  }
+  
+  if(member.getRole() === 'Intern') {
+    roleQ = `Education at: ${member.getSchool()}`
+  }
+  
+  if(member.getRole() === 'Manager') {
+    roleQ = `Office number: ${member.getOfficeNum()}`
   }
 
   return `<div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">${member.name}</h5>
-    <p class="card-text">${roleEmoji} ${member.role}</p>
+    <h5 class="card-title">${member.getName()}</h5>
+    <p class="card-text">${member.getRole()}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">ID: ${member.id}</li>
-    <li class="list-group-item">Email: <a href="mailto: ${member.email}?subject=Contact me" target="_blank">${member.email}</a></li>
+    <li class="list-group-item">ID: ${member.getId()}</li>
+    <li class="list-group-item">Email: <a href="mailto: ${member.getEmail()}?subject=Contact me" target="_blank">${member.getEmail()}</a></li>
     <li class="list-group-item">${roleQ}</li>
   </ul>
-</div>`
+</div>
+`
 }
 
 exports.generateHTML = generateHTML;
