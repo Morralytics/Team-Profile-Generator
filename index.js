@@ -10,6 +10,7 @@ const Intern = require('./lib/intern');
 // const newIntern = new Intern('nick morris', 24, '@gmail', 'volexity22')
 
 const finishedTeam = [];
+const generatedTeamCards = '';
 
 const questions = async () => {
     const answers = await inquirer
@@ -124,10 +125,13 @@ const questions = async () => {
 };
 
 const createTeam = (answers) => {
-    // finishedTeam.forEach(member => {
-    //     console.log(member);
-    // });
-    fs.writeFile('./dist/index.html', html.generateHTML(answers), (err) =>
+    finishedTeam.forEach(member => {
+        generatedTeamCards += html.generateCard(member);
+    });
+
+    let finalTeamProfileHTML = html.generateHTML(answers);
+
+    fs.writeFile('./dist/index.html', finalTeamProfileHTML, (err) =>
     err ? console.log(err) : console.log('success'));
 }
 
