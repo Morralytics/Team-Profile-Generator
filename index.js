@@ -118,16 +118,16 @@ const questions = async () => {
         if (managerAnswer.nextStep === 'Add a new team member') {
             questions()
         } else {
-            createTeam();
+            createTeam(answers);
         }
     };
 };
 
-const createTeam = () => {
+const createTeam = (answers) => {
     // finishedTeam.forEach(member => {
     //     console.log(member);
     // });
-    fs.writeFile('./dist/index.html', html.generateHTML(), (err) =>
+    fs.writeFile('./dist/index.html', html.generateHTML(answers), (err) =>
     err ? console.log(err) : console.log('success'));
 }
 

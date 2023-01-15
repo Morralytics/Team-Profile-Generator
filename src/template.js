@@ -1,5 +1,5 @@
 // Template for created team profile
-const generateHTML = () => {
+const generateHTML = (input) => {
 return `<!doctype html>
 <html lang="en">
   <head>
@@ -11,24 +11,39 @@ return `<!doctype html>
   </head>
   <body>
     <header>My Team</header>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>`
 }
 
+const generateCard = (member) => {
+  let roleQ = '';
+  let roleEmoji = '';
+
+  if(member.role === 'Engineer') {
+    roleQ = `GitHub: <a href="https://github.com/${member.git}>${member.git}</a>`;
+    roleEmoji = '👓';
+  } else if(member.role === 'Intern') {
+    roleQ = `Education at: ${member.school}`;
+    roleEmoji = '📖';
+  } else if(member.role === 'Manager') {
+    roleQ = `Office number: ${member.officeNum}`;
+    roleEmoji = '🍵';
+  }
+
+  return `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${member.name}</h5>
+    <p class="card-text">${roleEmoji} ${member.role}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">ID: ${member.id}</li>
+    <li class="list-group-item">Email: <a href="mailto: ${member.email}?subject=Contact me" target="_blank">${member.email}</a></li>
+    <li class="list-group-item">${roleQ}</li>
+  </ul>
+</div>`
+}
+
 exports.generateHTML = generateHTML;
+exports.generateCard = generateCard;
