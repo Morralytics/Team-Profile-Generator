@@ -22,6 +22,7 @@ const generateHTML = (input) => {
 </html>`
 }
 
+// Generates different code based on the role of the team member
 const generateCard = (member) => {
   let roleQ;
   let roleEmoji;
@@ -41,6 +42,7 @@ const generateCard = (member) => {
     roleEmoji = `🍵`
   }
 
+  // Returns a chunk of html based in Bootstrap for structure using the members information
   return `
   <div class="col-4">
     <div class="card" style="width: 18rem;">
@@ -58,5 +60,6 @@ const generateCard = (member) => {
 `
 }
 
+// Exports the functions used
 exports.generateHTML = generateHTML;
 exports.generateCard = generateCard;

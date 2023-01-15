@@ -1,14 +1,13 @@
 :root {
     /* Chosen palette */
-    --rose: #F28482;
-    --olive: #84A59D;
-    --peach: #F5CAC3;
+    --blue: #1C7293;
+    --dark-blue: #1B3B6F;
+    --gray: #9EB3C2;
     --washed-white: #F7EDE2;
-    --gold: #F6BD60;
 }
 
 .header {
-    background-color: #1B3B6F;
+    background-color: var(--dark-blue);
     color: var(--washed-white);
     padding: 1.5rem;
     border-radius: 5px;
@@ -31,5 +30,5 @@
 
 .card {
     margin-left: -12px;
-    background-image: linear-gradient(#1C7293, #9EB3C2);
+    background-image: linear-gradient(var(--blue), var(--gray));
 }

@@ -1,17 +1,19 @@
+// Node imports
 const inquirer = require('inquirer');
 const fs = require('fs');
-const html = require('./src/template');
 
+// Class and file imports
+const html = require('./src/template');
 const Engineer = require('./lib/engineer');
 const Manager = require('./lib/manager');
 const Intern = require('./lib/intern');
 
-// const newManager = new Manager('nick morris', 24, '@gmail', 'volexity22')
-// const newIntern = new Intern('nick morris', 24, '@gmail', 'volexity22')
-
+// Stored values for generation
 const finishedTeam = [];
 let generatedTeamCards = '';
 
+// Async takes the return value and automatically resolves it as a promise 
+// Simplifies the code base
 const questions = async () => {
     const answers = await inquirer
         .prompt([
@@ -125,6 +127,7 @@ const questions = async () => {
     };
 };
 
+// Function that loops through each team member and generates a team card that is then converted into a single html landing page
 const createTeam = () => {
     finishedTeam.forEach(member => {
         generatedTeamCards = generatedTeamCards + html.generateCard(member);
@@ -136,4 +139,5 @@ const createTeam = () => {
     err ? console.log('err') : console.log('success'));
 }
 
+// Runs the code base
 questions();
