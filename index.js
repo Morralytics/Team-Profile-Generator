@@ -61,8 +61,7 @@ const questions = async () => {
         if (engineerAnswer.nextStep === 'Add a new team member') {
             questions()
         } else {
-            //createTeam() needs to be created
-            console.log(finishedTeam);
+            createTeam();
         }
     }
     else if (answers.role === 'Intern') {
@@ -90,8 +89,7 @@ const questions = async () => {
         if (internAnswer.nextStep === 'Add a new team member') {
             questions()
         } else {
-            //createTeam() needs to be created
-            console.log(finishedTeam);
+            createTeam();
         }
     }
     else if (answers.role === 'Manager') {
@@ -119,10 +117,15 @@ const questions = async () => {
         if (managerAnswer.nextStep === 'Add a new team member') {
             questions()
         } else {
-            //createTeam() needs to be created
-            console.log(finishedTeam);
+            createTeam();
         }
     };
 };
+
+const createTeam = async () => {
+    finishedTeam.forEach(member => {
+        console.log(member);
+    });
+}
 
 questions();
