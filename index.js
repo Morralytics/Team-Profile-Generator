@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const html = require('./src/template');
 
 const Engineer = require('./lib/engineer');
 const Manager = require('./lib/manager');
@@ -122,10 +123,12 @@ const questions = async () => {
     };
 };
 
-const createTeam = async () => {
-    finishedTeam.forEach(member => {
-        console.log(member);
-    });
+const createTeam = () => {
+    // finishedTeam.forEach(member => {
+    //     console.log(member);
+    // });
+    fs.writeFile('./dist/index.html', html.generateHTML(), (err) =>
+    err ? console.log(err) : console.log('success'));
 }
 
 questions();
