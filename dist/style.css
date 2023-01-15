@@ -13,10 +13,28 @@ body {
 }
 
 header {
-    background-color: var(--rose);
+    background-color: #1B3B6F;
     color: var(--washed-white);
+    padding: 1.5rem;
     border-radius: 5px;
     margin-bottom: 1rem;
     text-align: center;
     font-size: 40px;
+}
+
+.custom-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-text {
+    font-size: 1.5rem;
+}
+.card-title {
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.card {
+    background-image: linear-gradient(#1C7293, #9EB3C2);
 }
