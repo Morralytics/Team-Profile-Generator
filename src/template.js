@@ -12,8 +12,10 @@ const generateHTML = (input) => {
     </head>
     <body>
       <header>My Team</header>
-      <section class="custom section">
-      ${input}
+      <section class="container">
+        <div class="row">
+        ${input}
+        </div>
       </section>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
@@ -25,7 +27,7 @@ const generateCard = (member) => {
   let roleEmoji;
 
   if (member.getRole() === 'Engineer') {
-    roleQ = `GitHub: <a href="https://github.com/${member.getGithub()}">${member.getGithub()}</a>`
+    roleQ = `GitHub: <a href="https://github.com/${member.getGithub()}" target="_blank">${member.getGithub()}</a>`
     roleEmoji = `👓`
   }
 
@@ -39,17 +41,20 @@ const generateCard = (member) => {
     roleEmoji = `🍵`
   }
 
-  return `<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">${member.getName()}</h5>
-    <p class="card-text">${member.getRole()}</p>
+  return `
+  <div class="col-4">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">${member.getName()}</h5>
+        <p class="card-text">${roleEmoji} ${member.getRole()}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">ID: ${member.getId()}</li>
+        <li class="list-group-item">Email: <a href="mailto: ${member.getEmail()}?subject=Contact me" target="_blank">${member.getEmail()}</a></li>
+        <li class="list-group-item">${roleQ}</li>
+      </ul>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">ID: ${member.getId()}</li>
-    <li class="list-group-item">Email: <a href="mailto: ${member.getEmail()}?subject=Contact me" target="_blank">${member.getEmail()}</a></li>
-    <li class="list-group-item">${roleQ}</li>
-  </ul>
-</div>
 `
 }
 
