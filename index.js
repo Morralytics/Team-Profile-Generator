@@ -67,6 +67,23 @@ const questions = async () => {
                     internAnswer.school
                 )
                 console.log(newIntern);
+        }
+        else if(answers.role === 'Manager') {
+            const managerAnswer = await inquirer
+                .prompt([
+                    {
+                        type: 'input',
+                        message: 'What is your office number?',
+                        name: 'officeNum'
+                    }
+                ])
+                const newManager = new Manager(
+                    answers.name,
+                    parseInt(answers.id),
+                    answers.email,
+                    managerAnswer.officeNum
+                )
+                console.log(newManager);
         };
 };
 
