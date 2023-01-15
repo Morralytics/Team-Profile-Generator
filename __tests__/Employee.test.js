@@ -109,4 +109,14 @@ describe('Employee', () => {
             expect(employee.getId()).toEqual(23);
         });
     });
+
+    describe("getEmail", () => {
+        it("Should return the email of the employee", () => {
+            // Initilizies a new employee
+            const employee = new Employee('Josh', 23, '@sample.com');
+
+            //Verifies that the method getEmail() returns the email of the employee
+            expect(employee.getEmail()).toEqual('@sample.com');
+        });
+    });
 });
