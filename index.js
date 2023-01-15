@@ -8,6 +8,8 @@ const Intern = require('./lib/intern');
 // const newManager = new Manager('nick morris', 24, '@gmail', 'volexity22')
 // const newIntern = new Intern('nick morris', 24, '@gmail', 'volexity22')
 
+const finishedTeam = [];
+
 const questions = async () => {
     const answers = await inquirer
         .prompt([
@@ -41,6 +43,12 @@ const questions = async () => {
                     type: 'input',
                     message: 'What is your GitHub profile?',
                     name: 'git'
+                },
+                {
+                    type: 'list',
+                    message: 'What would you like to do next?',
+                    name: 'nextStep',
+                    choices: ['Add a new team member', 'Create team!']
                 }
             ])
         const newEngineer = new Engineer(
@@ -49,13 +57,13 @@ const questions = async () => {
             answers.email,
             engineerAnswer.git
         )
+        finishedTeam.push(newEngineer);
         if (engineerAnswer.nextStep === 'Add a new team member') {
             questions()
         } else {
             //createTeam() needs to be created
-            console.log('rendered');
+            console.log(finishedTeam);
         }
-        console.log(newEngineer);
     }
     else if (answers.role === 'Intern') {
         const internAnswer = await inquirer
@@ -66,7 +74,10 @@ const questions = async () => {
                     name: 'school'
                 },
                 {
-
+                    type: 'list',
+                    message: 'What would you like to do next?',
+                    name: 'nextStep',
+                    choices: ['Add a new team member', 'Create team!']
                 }
             ])
         const newIntern = new Intern(
@@ -75,13 +86,13 @@ const questions = async () => {
             answers.email,
             internAnswer.school
         )
+        finishedTeam.push(newIntern);
         if (internAnswer.nextStep === 'Add a new team member') {
             questions()
         } else {
             //createTeam() needs to be created
-            console.log('rendered');
+            console.log(finishedTeam);
         }
-        console.log(newIntern);
     }
     else if (answers.role === 'Manager') {
         const managerAnswer = await inquirer
@@ -104,13 +115,13 @@ const questions = async () => {
             answers.email,
             managerAnswer.officeNum
         )
+        finishedTeam.push(newManager);
         if (managerAnswer.nextStep === 'Add a new team member') {
             questions()
         } else {
             //createTeam() needs to be created
-            console.log('rendered');
+            console.log(finishedTeam);
         }
-        console.log(newManager);
     };
 };
 
