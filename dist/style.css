@@ -1,0 +1,14 @@
+:root {
+    /* Chosen palette */
+    --rose: #F28482;
+    --olive: #84A59D;
+    --peach: #F5CAC3;
+    --washed-white: #F7EDE2;
+    --gold: #F6BD60;
+}
+
+header {
+    background-color: var(--rose);
+    text-align: center;
+    font-size: 40px;
+}
